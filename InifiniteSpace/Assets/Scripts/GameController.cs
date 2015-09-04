@@ -22,5 +22,10 @@ public class GameController : MonoBehaviour
 			if(m_Spawners.Length > 0)
 				m_Spawners[0].SpawnEnemy();
 		}
+
+		if (Input.GetKeyUp ("escape")) 
+		{
+			//Do pause menu logic
+		}
 	}
 }

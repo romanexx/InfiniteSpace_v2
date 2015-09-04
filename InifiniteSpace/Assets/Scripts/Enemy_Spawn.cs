@@ -29,4 +29,10 @@ public class Enemy_Spawn : MonoBehaviour
 			Instantiate (enemy_type, m_rigidbody.position, m_rigidbody.rotation);
 		}
 	}
+
+	//Spawns one enemy of the type associated with the spawn point.
+	public void SpawnEnemy()
+	{
+		Instantiate (enemy_type, m_rigidbody.position, m_rigidbody.rotation);
+	}
 }

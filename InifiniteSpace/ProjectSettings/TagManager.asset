@@ -9,6 +9,7 @@ TagManager:
   - BaseEnemy
   - Radar
   - Missile
+  - HealthBar
   layers:
   - Default
   - TransparentFX

@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_Spawn : MonoBehaviour 
+public class Spawn_Controller : MonoBehaviour 
 {
-	public GameObject enemy_type;
-
+	public GameObject object_type;
+	
 	public int spawn_count;
 	public float spawn_rate;
-
+	
 	int currentCount = 0;
 	float nextSpawn = 0.0f;
-
+	
 	Rigidbody m_rigidbody;
-
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -26,13 +26,13 @@ public class Enemy_Spawn : MonoBehaviour
 		{
 			currentCount += 1;
 			nextSpawn = Time.time + spawn_rate;
-			Instantiate (enemy_type, m_rigidbody.position, m_rigidbody.rotation);
+			Instantiate (object_type, m_rigidbody.position, m_rigidbody.rotation);
 		}
 	}
-
+	
 	//Spawns one enemy of the type associated with the spawn point.
-	public void SpawnEnemy()
+	public void Spawn()
 	{
-		Instantiate (enemy_type, m_rigidbody.position, m_rigidbody.rotation);
+		Instantiate (object_type, m_rigidbody.position, m_rigidbody.rotation);
 	}
 }

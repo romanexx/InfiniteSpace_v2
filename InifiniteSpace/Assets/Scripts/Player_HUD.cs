@@ -29,7 +29,7 @@ public class Player_HUD : MonoBehaviour
 			{
 				m_Target = m_Player.m_Target.transform;
 				Vector3 toCanvas = gameObject.transform.position - m_Player.m_Target.transform.position;
-				m_Target.Rotate(toCanvas);
+				m_Target.rotation = Quaternion.Euler(toCanvas);
 			}
 		}
 	}

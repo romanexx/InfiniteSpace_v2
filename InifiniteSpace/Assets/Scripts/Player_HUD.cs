@@ -8,7 +8,7 @@ public class Player_HUD : MonoBehaviour
 	//Health Bar information
 	float m_startHealth;
 	public UnityEngine.UI.Slider m_HealthBar;
-	public Transform m_Target;
+	public GameObject m_Target;
 
 	// Use this for initialization
 	void Start () 
@@ -27,9 +27,16 @@ public class Player_HUD : MonoBehaviour
 
 			if(m_Player.m_Target != null)
 			{
-				m_Target = m_Player.m_Target.transform;
+				m_Target.transform.position = m_Player.m_Target.transform.position;
+				m_Target.transform.Translate(0.0f, 15.0f, 0.0f);
 				Vector3 toCanvas = gameObject.transform.position - m_Player.m_Target.transform.position;
-				m_Target.rotation = Quaternion.Euler(toCanvas);
+				m_Target.transform.rotation = Quaternion.Euler(toCanvas);
+			}
+			else
+			{
+				m_Target.transform.position = m_Player.transform.position;
+				m_Target.transform.Translate(0.0f, 0.0f, -50.0f);
+				m_Target.transform.rotation = m_Player.transform.rotation;
 			}
 		}
 	}

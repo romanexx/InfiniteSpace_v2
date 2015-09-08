@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
 		if (Input.GetKeyUp ("escape")) 
 		{
 			//Do pause menu logic
+			Application.LoadLevel("MainMenu");
 		}
 	}
 }

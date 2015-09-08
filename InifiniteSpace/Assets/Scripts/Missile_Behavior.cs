@@ -101,7 +101,11 @@ public class Missile_Behavior : MonoBehaviour {
 
 			Destroy(gameObject);
 			//explosion.Play();
-			Instantiate(explosionPrefab,m_Transform.position, m_Transform.rotation);
+
+			//cleans up the explosion
+			GameObject t = Instantiate(explosionPrefab,m_Transform.position, m_Transform.rotation) as GameObject;
+
+			Destroy (t,5.0f);
 		}
 	}
 }

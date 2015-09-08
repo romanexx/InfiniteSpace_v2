@@ -79,9 +79,19 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,fHorizontal * -Tilt);
 			else
 				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,-fHorizontal * -Tilt);
-		       
+	   		      
+	}
 
-
-        
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == "BaseEnemy")
+		{
+			TakeDamage (200);
+			Destroy(other.gameObject);
+		}
+		if (other.tag == "BaseProjectile") 
+		{
+			TakeDamage(other.GetComponent<Projectile>().Damage);
+		}
 	}
 }

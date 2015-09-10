@@ -6,7 +6,7 @@ public class MainMenuContorller : MonoBehaviour
 
 	public void StartButton()
 	{
-		Application.LoadLevel ("FirstTestScene");
+		Application.LoadLevel ("Level_1");
 	}
 
 	public void ExitButton()

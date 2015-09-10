@@ -31,7 +31,9 @@ public class Enemy_Radar : _BaseRadar {
 		{
 			SetTarget(other.gameObject);
 			myController.TargetAcquired(true);
-			Debug.Log(gameObject.name + " Acquired the target");
+
+			//Debug.Log(gameObject.name + " Acquired the target");
+
 		}
 	}
 

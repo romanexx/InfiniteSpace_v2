@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204009e98b0e2614a9ffe092344e5ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
   ReloadTime: 10
 --- !u!1001 &100100000
 Prefab:
@@ -51,6 +52,10 @@ Prefab:
       propertyPath: ReloadTime
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ProjectilePrefab
+      value: 
+      objectReference: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103576}

@@ -61,7 +61,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 
 			bool b = missiles[nextmissile].Fire(myRadar.GetTarget());
 			if(b)
-			nextmissile = nextmissile^1;
+				nextmissile = nextmissile^1;
 			//Debug.Log(nextmissile);
 		}
 	}

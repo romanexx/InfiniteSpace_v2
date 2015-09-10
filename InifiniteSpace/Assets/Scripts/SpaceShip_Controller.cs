@@ -100,6 +100,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 		if(other.tag == "BaseEnemy")
 		{
 			TakeDamage (200);
+			Event_System.EnemyDestroyed(this.gameObject);
 			Destroy(other.gameObject);
 		}
 

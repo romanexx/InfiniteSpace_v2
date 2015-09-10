@@ -51,8 +51,11 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	void Update()
 	{
 		if (m_heatlh <= 0)
+		{
+			//Event_Manager.TriggerEvent("EnemyDestroyed");
+			Event_System.EnemyDestroyed(this.gameObject);
 			Destroy (gameObject);
-
+		}
 		//Checks if the Player is infront of the enemy and if they're in a sutible range to attack
 		var m_HitInfo = new RaycastHit();
 		if (Physics.Raycast (m_transform.position, m_transform.forward, out m_HitInfo, m_fireRange) == true) 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,7 +16,27 @@ public class Player_Radar : _BaseRadar {
 		Targets = new List<GameObject>();
 		myTransform = GetComponent<Transform>();
 	}
-	
+
+	void OnEnable()
+	{
+		//Event_Manager.StartListening("EnemyDestroyed", UpdateTargets);
+		Event_System.OnEnemyDestroy+= UpdateTargets;
+	}
+
+	void OnDisable()
+	{
+		//Event_Manager.StopListening("EnemyDestroyed", UpdateTargets);
+		Event_System.OnEnemyDestroy-= UpdateTargets;
+	}
+
+	void UpdateTargets(GameObject obj = null)
+	{
+		if(Targets.Contains(obj))
+			Targets.Remove(obj);
+		Debug.Log ("Enemy Destroyed - there are " + Targets.Count + " enemies left");
+
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -31,7 +52,7 @@ public class Player_Radar : _BaseRadar {
 		if(Scroll < 0f)
 		{
 			Debug.Log("Switching Targets- There are " + Targets.Count );
-			var t = Targets.GetEnumerator();
+			//var t = Targets.GetEnumerator();
 
 		}
 	}

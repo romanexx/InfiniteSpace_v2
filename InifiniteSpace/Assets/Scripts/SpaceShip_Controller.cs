@@ -21,6 +21,9 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 
 	public GameObject m_Target; 
 
+
+
+	public Player_Radar myRadar;
 	Missile_HardPoint [] missiles; // holds the two spawn points for the missiles
 	Laser_Hardpoint [] lasers;	   // holds all the laser spawn points - array in case we want multiple lasers
 	public GameObject m_Missile;  // holds the prefab for missile
@@ -39,6 +42,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
         m_Transform = GetComponent<Transform>();
 		missiles = GetComponentsInChildren<Missile_HardPoint>();
 		lasers = GetComponentsInChildren<Laser_Hardpoint>();
+
 	}
 
 	int nextmissile = 0;
@@ -55,7 +59,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 		{
 			// Fire Missile
 
-			bool b = missiles[nextmissile].Fire(m_Target);
+			bool b = missiles[nextmissile].Fire(myRadar.GetTarget());
 			if(b)
 			nextmissile = nextmissile^1;
 			//Debug.Log(nextmissile);
@@ -82,16 +86,22 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 	   		      
 	}
 
+
+
+
 	void OnTriggerEnter(Collider other)
 	{
+
+		if (other.tag == "BaseProjectile") 
+		{
+			TakeDamage(other.GetComponent<Projectile>().Damage);
+		}
+
 		if(other.tag == "BaseEnemy")
 		{
 			TakeDamage (200);
 			Destroy(other.gameObject);
 		}
-		if (other.tag == "BaseProjectile") 
-		{
-			TakeDamage(other.GetComponent<Projectile>().Damage);
-		}
+
 	}
 }

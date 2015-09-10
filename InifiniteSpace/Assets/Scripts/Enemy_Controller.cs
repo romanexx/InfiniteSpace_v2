@@ -59,7 +59,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 			{
 				for(int i = 0; i < m_lasers.Length; ++i)
 					m_lasers[i].Fire();
-				Debug.Log("Enemy Firing");
+				//Debug.Log("Enemy Firing");
 			}
 
 		}
@@ -98,9 +98,13 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			 TakeDamage(other.GetComponent<Projectile>().Damage);
 		}
-			
+//		else if(other.tag == "Radar")
+//		{
+//			Debug.Log("Collided with the radar");
+//		}
 //		else if (other.tag == "Player") 
 //		{
+//			Debug.Log("Collided with the player");
 //			Destroy(gameObject);
 //		}
 	}

@@ -87,6 +87,34 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &240207728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 671154543}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 240207729}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &240207729
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 671154543}
+  m_GameObject: {fileID: 240207728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 311294913}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &286948396
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,10 +219,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HealthBar: {fileID: 318939426}
   m_Target: {fileID: 311294912}
---- !u!1 &311294912 stripped
+--- !u!1 &311294912
 GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 118902, guid: 99814dbdcb488a745a7a180612b750c3, type: 2}
   m_PrefabInternal: {fileID: 671154543}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 311294913}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &311294913
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 671154543}
+  m_GameObject: {fileID: 311294912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 240207729}
+  m_RootOrder: 0
 --- !u!1 &318939425
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +367,10 @@ Prefab:
     - target: {fileID: 495408, guid: 44ec8b8f187089545886460f84dab78e, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442538, guid: 44ec8b8f187089545886460f84dab78e, type: 2}
+      propertyPath: m_MaxSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44ec8b8f187089545886460f84dab78e, type: 2}

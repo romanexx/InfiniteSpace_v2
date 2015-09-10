@@ -19,7 +19,8 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 
 	//General Enemy Attributes
 	public int m_heatlh;
-	public float m_speed;
+	public float m_MaxSpeed;
+	float m_CurrSpeed;
 	public float m_turnRate;
 	public float m_fireRange;
 	public bool m_BaseBehavior = false;
@@ -44,6 +45,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		//Gives the Enemy its laser spawn poitions.
 		m_lasers = GetComponentsInChildren<Laser_Hardpoint>();
 		myRadar = GetComponentInChildren<Enemy_Radar>();
+		m_CurrSpeed = m_MaxSpeed;
 	}
 
 	void Update()
@@ -69,18 +71,27 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	{
 		if (m_BaseBehavior == true) 
 		{
-			//if (target != null && target.tag == "Player")
 			if(myRadar.GetTarget())
 			{
 				m_ToTarget = myRadar.GetTarget().transform.position - m_transform.position;
-				// The step size is equal to speed times frame time.
-				var step = m_turnRate * Time.deltaTime;
-				var newDir = Vector3.RotateTowards(m_transform.forward, m_ToTarget, step, 0.0f);
-				//Debug.DrawRay(transform.position, newDir, Color.red);
-				// Move our position a step closer to the target.
+				Vector3 newDir;
+				float step = m_turnRate * Time.deltaTime;
+				//Ships behavior when chasing the player. 
+				if(m_ToTarget.magnitude < 50.0f)
+				{
+					//Avoid Crashing into the player
+					m_CurrSpeed = m_MaxSpeed * 0.5f;
+					newDir = Vector3.RotateTowards(m_transform.forward, -m_ToTarget, step, 0.0f);
+				}
+				else
+				{
+					//Drive striaght at the enemy guns blazing. 
+					m_CurrSpeed = m_MaxSpeed;
+					newDir = Vector3.RotateTowards(m_transform.forward, m_ToTarget, step, 0.0f);
+				}
+
 				m_transform.rotation = Quaternion.LookRotation(newDir);
-				
-				m_rigidbody.velocity = m_transform.forward * m_speed;
+				m_rigidbody.velocity = m_transform.forward * m_CurrSpeed;
 			} 
 
 		}
@@ -88,7 +99,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			//If there is no target it does a base patrol;
 			m_transform.Rotate (0f, m_turnRate, 0f);
-			m_rigidbody.velocity = m_transform.forward * m_speed;
+			m_rigidbody.velocity = m_transform.forward * m_CurrSpeed;
 		}
 	}
 	
@@ -109,12 +120,4 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	{
 		m_BaseBehavior = b;
 	}
-//	public GameObject Target {
-//		get {
-//			return target;
-//		}
-//		set {
-//			target = value;
-//		}
-//	}
 }

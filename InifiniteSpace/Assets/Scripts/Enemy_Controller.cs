@@ -112,15 +112,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			 TakeDamage(other.GetComponent<Projectile>().Damage);
 		}
-//		else if(other.tag == "Radar")
-//		{
-//			Debug.Log("Collided with the radar");
-//		}
-//		else if (other.tag == "Player") 
-//		{
-//			Debug.Log("Collided with the player");
-//			Destroy(gameObject);
-//		}
+
 	}
 
 	public void TargetAcquired(bool b)

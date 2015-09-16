@@ -25,6 +25,8 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	public float m_fireRange;
 	public bool m_BaseBehavior = false;
 
+	public GameObject m_Death;
+
 
 	//Ai Behavior stuff.
 	Vector3 m_ToTarget;
@@ -54,6 +56,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			//Event_Manager.TriggerEvent("EnemyDestroyed");
 			Event_System.EnemyDestroyed(this.gameObject);
+			Instantiate(m_Death, m_rigidbody.position, m_rigidbody.rotation);
 			Destroy (gameObject);
 		}
 		//Checks if the Player is infront of the enemy and if they're in a sutible range to attack

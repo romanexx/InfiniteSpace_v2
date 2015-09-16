@@ -240,6 +240,7 @@ MonoBehaviour:
   m_turnRate: 1
   m_fireRange: 100
   m_BaseBehavior: 0
+  m_Death: {fileID: 100000, guid: 4813da6bfa5e94ac682f6d270a12d4b5, type: 2}
   Laser: {fileID: 144666, guid: 1da7c8cb66250c74eba72b5317839128, type: 2}
 --- !u!114 &11474226
 MonoBehaviour:

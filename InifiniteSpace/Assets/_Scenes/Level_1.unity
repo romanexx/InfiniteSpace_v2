@@ -274,15 +274,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11480074, guid: 76adc7aacb3eed545a3a8d73ac7fde9f, type: 2}
-      propertyPath: ProjectilePrefab
-      value: 
-      objectReference: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
-    - target: {fileID: 11415262, guid: 76adc7aacb3eed545a3a8d73ac7fde9f, type: 2}
-      propertyPath: myRadar
-      value: 
-      objectReference: {fileID: 11458610, guid: 51a46e711af870941a562d2401fbd83a,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76adc7aacb3eed545a3a8d73ac7fde9f, type: 2}
   m_IsPrefabParent: 0

@@ -8,7 +8,6 @@ public class Player_HUD : MonoBehaviour
 	GameController m_Game = null;
 
 	//Health Bar information
-	float m_startHealth;
 	public UnityEngine.UI.Slider m_HealthBar;
 	public GameObject m_Target;
 	public Text m_Score;
@@ -18,7 +17,6 @@ public class Player_HUD : MonoBehaviour
 	{
 		m_Player = FindObjectOfType<SpaceShip_Controller>();
 		m_Game = FindObjectOfType<GameController>();
-		m_startHealth = m_Player.Health;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +24,7 @@ public class Player_HUD : MonoBehaviour
 	{
 		if (m_Player != null) 
 		{
-			float healthRat = m_Player.Health / m_startHealth;
+			float healthRat = m_Player.M_health / m_Player.MaxHealth;
 			m_HealthBar.value = m_HealthBar.maxValue * healthRat;
 			m_Score.text = m_Game.M_Score.ToString();
 

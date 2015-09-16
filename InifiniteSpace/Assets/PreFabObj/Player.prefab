@@ -313,12 +313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c768413e99629fe4c93d5e4682864e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 300
+  MaxHealth: 300
   playerModel: {fileID: 175340}
   Tilt: 25
   Speed: 50
   m_Target: {fileID: 0}
-  myRadar: {fileID: 0}
+  myRadar: {fileID: 11458610, guid: 51a46e711af870941a562d2401fbd83a, type: 2}
   m_Missile: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
   Laser: {fileID: 144666, guid: 1da7c8cb66250c74eba72b5317839128, type: 2}
 --- !u!114 &11456436
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204009e98b0e2614a9ffe092344e5ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
   ReloadTime: 2
 --- !u!114 &11492800
 MonoBehaviour:

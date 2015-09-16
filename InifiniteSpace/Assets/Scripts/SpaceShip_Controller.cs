@@ -7,12 +7,12 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 	//interface methods
 	public void TakeDamage(int dam)
 	{
-		Health-=dam;
+		m_health -= dam;
 	}
 
 
-
-	public int Health = 300;
+	public int MaxHealth;
+	float m_health;
     Rigidbody m_rigidbody;
     public GameObject playerModel;
     Transform m_Transform;
@@ -42,7 +42,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
         m_Transform = GetComponent<Transform>();
 		missiles = GetComponentsInChildren<Missile_HardPoint>();
 		lasers = GetComponentsInChildren<Laser_Hardpoint>();
-
+		m_health = MaxHealth;
 	}
 
 	int nextmissile = 0;
@@ -86,9 +86,13 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 	   		      
 	}
 
-
-
-
+	public void Reset()
+	{
+		m_health = MaxHealth;
+		m_Transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+		m_Transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+	}
+	
 	void OnTriggerEnter(Collider other)
 	{
 
@@ -104,5 +108,14 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 			Destroy(other.gameObject);
 		}
 
+	}
+	
+	public float M_health {
+		get {
+			return m_health;
+		}
+		set {
+			m_health = value;
+		}
 	}
 }

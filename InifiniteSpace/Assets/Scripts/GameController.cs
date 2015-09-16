@@ -6,7 +6,8 @@ public class GameController : MonoBehaviour
 	SpaceShip_Controller m_Player; //We could try and make split screen co-op and make this and array but thats unneeded
 	Spawn_Controller[] m_Spawners;
 
-	int m_Score = 0; 
+	int m_Score = 0;
+	int m_Lives = 3;
 
 	// Use this for initialization
 	void Start () 
@@ -28,6 +29,11 @@ public class GameController : MonoBehaviour
 		{
 			//Do pause menu logic
 			Application.LoadLevel("MainMenu");
+		}
+
+		if (m_Player.M_health <= 0) 
+		{
+			m_Player.Reset();
 		}
 	}
 

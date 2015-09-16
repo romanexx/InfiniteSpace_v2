@@ -33,9 +33,37 @@ public class Player_Radar : _BaseRadar {
 	{
 		if(Targets.Contains(obj))
 			Targets.Remove(obj);
-		Debug.Log ("Enemy Destroyed - there are " + Targets.Count + " enemies left");
+
+
+		if(GetTarget() == obj)     //if my current target died lets pick a new one
+		{
+			if(Targets.Count > 0)  // if there are more targets in our list- just set current target to the first one in the list
+				SetTarget(Targets[0]);
+			else
+				SetTarget(null);
+		}
 
 	}
+	public Texture tex;
+
+	void OnGUI()
+	{
+
+		if(!GetTarget())
+			return;
+
+		Transform t = GetTarget().transform;
+
+		Vector2 targetPos;
+		targetPos = Camera.main.WorldToScreenPoint (t.position);
+		
+		GUI.Box(new Rect(targetPos.x-15, Screen.height- targetPos.y-15, 25, 25), tex);
+
+
+	
+		
+	}
+
 
 	// Update is called once per frame
 	void Update () 
@@ -43,17 +71,40 @@ public class Player_Radar : _BaseRadar {
 
 		myTransform.position = player.transform.position;
 
+	
+
+
 
 		float Scroll = Input.GetAxis("Mouse ScrollWheel");
-		if(Scroll > 0f)
+		if (Targets.Count > 1) 
 		{
-			Debug.Log("Switching Targets- There are " + Targets.Count );
-		}
-		if(Scroll < 0f)
-		{
-			Debug.Log("Switching Targets- There are " + Targets.Count );
-			//var t = Targets.GetEnumerator();
 
+			int NumTargets = Targets.Count;
+			int TargetIndex = Targets.IndexOf (GetTarget ());
+
+			if (Scroll > 0f) 
+			{
+				++TargetIndex;     //Go to next Target
+			}
+			if (Scroll < 0f) 
+			{
+				--TargetIndex;     // Go To Prev Target
+			}
+
+
+			if(TargetIndex > NumTargets-1)
+				TargetIndex = 0;
+			else if(TargetIndex < 0)
+				TargetIndex = NumTargets-1;
+
+
+			SetTarget(Targets[TargetIndex]);
+
+			if(GetTarget())
+			{
+				Debug.DrawRay(myTransform.position, GetTarget().transform.position, Color.green);
+				
+			}
 		}
 	}
 
@@ -61,17 +112,17 @@ public class Player_Radar : _BaseRadar {
 	{
 		if(other.tag == TagToDetect)
 		{
-			if(GetTarget()==null)
-			{
-				SetTarget(other.gameObject);
-				Targets.Add(other.gameObject);
-			}
-			else if(Targets.Contains(other.gameObject)==false)
+
+			if(Targets.Contains(other.gameObject)==false)
 			{
 				Targets.Add(other.gameObject);
 
+				if(GetTarget() == null)
+					SetTarget(other.gameObject);
+
 			}
 		}
+
 	}
 
 	void OnTriggerExit(Collider other)
@@ -81,6 +132,14 @@ public class Player_Radar : _BaseRadar {
 			if(Targets.Contains(other.gameObject))
 			{
 				Targets.Remove(other.gameObject);
+			}
+
+			if(GetTarget() == other.gameObject)
+			{
+				if(Targets.Count > 0)  // if there are more targets in our list- just set current target to the first one in the list
+					SetTarget(Targets[0]);
+				else
+					SetTarget(null);
 			}
 		}
 

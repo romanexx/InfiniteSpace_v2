@@ -87,12 +87,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &108439354 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11456986, guid: 922a6d52b6578a840a00d464728f7ae3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1089754225}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &139208305
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,10 +285,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!1 &302691428 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 118902, guid: 99814dbdcb488a745a7a180612b750c3, type: 2}
-  m_PrefabInternal: {fileID: 2067524729}
 --- !u!1001 &932556809
 Prefab:
   m_ObjectHideFlags: 0
@@ -524,10 +514,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11471004, guid: 922a6d52b6578a840a00d464728f7ae3, type: 2}
-      propertyPath: m_Target
-      value: 
-      objectReference: {fileID: 302691428}
     - target: {fileID: 22342822, guid: 922a6d52b6578a840a00d464728f7ae3, type: 2}
       propertyPath: m_Camera
       value: 
@@ -540,14 +526,6 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11456986, guid: 922a6d52b6578a840a00d464728f7ae3, type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471004, guid: 922a6d52b6578a840a00d464728f7ae3, type: 2}
-      propertyPath: m_Score
-      value: 
-      objectReference: {fileID: 108439354}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922a6d52b6578a840a00d464728f7ae3, type: 2}
   m_IsPrefabParent: 0

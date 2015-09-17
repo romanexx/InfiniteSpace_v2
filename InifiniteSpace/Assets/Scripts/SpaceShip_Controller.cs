@@ -48,42 +48,50 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 	int nextmissile = 0;
 	void Update()
 	{
-		if (Input.GetButton ("Fire1") ) 
+		if (m_health > 0) 
 		{
-			lasers[0].Fire ();
+			if (Input.GetButton ("Fire1")) {
+				lasers [0].Fire ();
 
-		}
+			}
 
 
-		if (Input.GetButtonDown ("Fire2") ) 
-		{
-			// Fire Missile
+			if (Input.GetButtonDown ("Fire2")) {
+				// Fire Missile
 
-			bool b = missiles[nextmissile].Fire(myRadar.GetTarget());
-			if(b)
-				nextmissile = nextmissile^1;
-			//Debug.Log(nextmissile);
+				bool b = missiles [nextmissile].Fire (myRadar.GetTarget ());
+				if (b)
+					nextmissile = nextmissile ^ 1;
+				//Debug.Log(nextmissile);
+			}
 		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        float fVertical = Input.GetAxis("Vertical");
-        float fHorizontal = Input.GetAxis("Horizontal");
+		if (m_health > 0) 
+		{
+			float fVertical = Input.GetAxis ("Vertical");
+			float fHorizontal = Input.GetAxis ("Horizontal");
 
-        //Vector3 move = new Vector3(0.0f,0.0f, fVertical);
+			//Vector3 move = new Vector3(0.0f,0.0f, fVertical);
 
-		m_Transform.Rotate(0f,fHorizontal,0f);
-		m_rigidbody.velocity = m_Transform.forward *Speed *fVertical;
+			m_Transform.Rotate (0f, fHorizontal, 0f);
+			m_rigidbody.velocity = m_Transform.forward * Speed * fVertical;
 
 
 
-			if(fVertical >= 0f)
-				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,fHorizontal * -Tilt);
+			if (fVertical >= 0f)
+				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, fHorizontal * -Tilt);
 			else
-				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,-fHorizontal * -Tilt);
-	   		      
+				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, -fHorizontal * -Tilt);
+		} 
+		else 
+		{
+			m_rigidbody.velocity = new Vector3 (0.0f, 0.0f, 0.0f);
+			playerModel.SetActive(false);
+		}	      
 	}
 
 	public void Reset()
@@ -91,6 +99,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 		m_health = MaxHealth;
 		m_Transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 		m_Transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+		playerModel.SetActive (true);
 	}
 	
 	void OnTriggerEnter(Collider other)

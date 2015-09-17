@@ -56,7 +56,8 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			//Event_Manager.TriggerEvent("EnemyDestroyed");
 			Event_System.EnemyDestroyed(this.gameObject);
-			Instantiate(m_Death, m_rigidbody.position, m_rigidbody.rotation);
+			Object death = Instantiate(m_Death, m_rigidbody.position, m_rigidbody.rotation);
+			Destroy(death, 1.0f);
 			Destroy (gameObject);
 		}
 		//Checks if the Player is infront of the enemy and if they're in a sutible range to attack
@@ -86,7 +87,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 				if(m_ToTarget.magnitude < 50.0f)
 				{
 					//Avoid Crashing into the player
-					m_CurrSpeed = m_MaxSpeed * 0.5f;
+					m_CurrSpeed = m_MaxSpeed * 0.75f;
 					newDir = Vector3.RotateTowards(m_transform.forward, -m_ToTarget, step, 0.0f);
 				}
 				else

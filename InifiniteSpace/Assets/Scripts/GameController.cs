@@ -4,7 +4,9 @@ using System.Collections;
 public class GameController : MonoBehaviour 
 {
 	SpaceShip_Controller m_Player; //We could try and make split screen co-op and make this and array but thats unneeded
+	Player_HUD m_HUD;
 	Spawn_Controller[] m_Spawners;
+
 
 	int m_Score = 0;
 	int m_Lives = 3;
@@ -16,6 +18,7 @@ public class GameController : MonoBehaviour
 	void Start () 
 	{
 		m_Player = FindObjectOfType<SpaceShip_Controller>();
+		m_HUD = FindObjectOfType<Player_HUD>();
 		m_Spawners = FindObjectsOfType<Spawn_Controller>();
 		m_Timer = m_Respawn;
 	}
@@ -28,6 +31,11 @@ public class GameController : MonoBehaviour
 			if(m_Spawners.Length > 0)
 				m_Spawners[0].Spawn();
 		}
+
+		if (Input.GetKeyDown ("f1"))
+			m_HUD.HelpOn ();
+		if (Input.GetKeyUp ("f1"))
+			m_HUD.HelpOff ();
 
 		if (Input.GetKeyUp ("escape")) 
 		{

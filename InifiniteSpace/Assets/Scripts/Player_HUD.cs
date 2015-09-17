@@ -11,6 +11,7 @@ public class Player_HUD : MonoBehaviour
 	public UnityEngine.UI.Slider m_HealthBar;
 	public Text m_Score;
 	public Text m_Respawn;
+	public Text m_Help;
 	public RectTransform m_Lives;
 
 	//Life Images control variables.
@@ -25,6 +26,8 @@ public class Player_HUD : MonoBehaviour
 		//Setting the life counter up. 
 		m_Lives.sizeDelta = new Vector2 (m_Lives.sizeDelta.x * m_Game.M_Lives, m_Lives.sizeDelta.y);
 		m_ImgWidth = m_Lives.sizeDelta.x / (float)m_Game.M_Lives;
+
+		m_Help.enabled = false; 
 	}
 	
 	// Update is called once per frame
@@ -47,5 +50,15 @@ public class Player_HUD : MonoBehaviour
 			else
 				m_Respawn.text = "";
 		}
+	}
+
+	public void HelpOn()
+	{
+		m_Help.enabled = true;
+	}
+
+	public void HelpOff()
+	{
+		m_Help.enabled = false;
 	}
 }

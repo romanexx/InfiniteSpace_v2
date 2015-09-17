@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
 	int m_Score = 0;
 	int m_Lives = 3;
 	public float m_Respawn = 3.0f;
-	float m_Timer; 
+	float m_Timer;
+ 
 
 	// Use this for initialization
 	void Start () 
@@ -39,8 +40,8 @@ public class GameController : MonoBehaviour
 			m_Timer -= Time.deltaTime;
 			if(m_Timer < 0.0f)
 			{
-				m_Player.Reset();
 				m_Lives -= 1;
+				m_Player.Reset();
 				m_Timer = m_Respawn;
 			}
 		}
@@ -78,6 +79,12 @@ public class GameController : MonoBehaviour
 	public int M_Lives {
 		get {
 			return m_Lives;
+		}
+	}
+
+	public float M_Timer {
+		get {
+			return m_Timer;
 		}
 	}
 }

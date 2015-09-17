@@ -318,9 +318,10 @@ MonoBehaviour:
   Tilt: 25
   Speed: 50
   m_Target: {fileID: 0}
-  myRadar: {fileID: 11458610, guid: 51a46e711af870941a562d2401fbd83a, type: 2}
+  myRadar: {fileID: 0}
   m_Missile: {fileID: 116980, guid: d3da39e7ea8b10947937b62f356bd68d, type: 2}
   Laser: {fileID: 144666, guid: 1da7c8cb66250c74eba72b5317839128, type: 2}
+  m_Death: {fileID: 100000, guid: e6ab56e4714ff4154ac034cf28db78b2, type: 2}
 --- !u!114 &11456436
 MonoBehaviour:
   m_ObjectHideFlags: 1

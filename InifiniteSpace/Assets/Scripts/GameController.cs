@@ -8,10 +8,6 @@ public class GameController : MonoBehaviour
 
 	int m_Score = 0;
 	int m_Lives = 3;
-	float m_RespawnTime = 3.0f;
-	float m_timer = 0.0f;
-
-	bool GameOver = false;
 
 	// Use this for initialization
 	void Start () 
@@ -37,14 +33,7 @@ public class GameController : MonoBehaviour
 
 		if (m_Player.M_health <= 0) 
 		{
-			m_timer += Time.deltaTime;
-			if(m_timer >= m_RespawnTime)
-			{
-				m_Player.Reset();
-				m_Lives -= 1;
-				if(m_Lives <= 0)
-					GameOver = true;
-			}
+			m_Player.Reset();
 		}
 	}
 

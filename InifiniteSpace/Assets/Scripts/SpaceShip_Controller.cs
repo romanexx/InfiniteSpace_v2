@@ -32,7 +32,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 	public GameObject Laser;
 	public GameObject getLaserPrefab(){return Laser;}  //  Accessor for the laser prefab, in case we wanna have different kinds of lasers;
 
-	Renderer m_ship;
+
 
 
 	// Use this for initialization
@@ -42,61 +42,48 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
         m_Transform = GetComponent<Transform>();
 		missiles = GetComponentsInChildren<Missile_HardPoint>();
 		lasers = GetComponentsInChildren<Laser_Hardpoint>();
-		m_ship = GetComponentInChildren<Renderer>();
 		m_health = MaxHealth;
 	}
 
 	int nextmissile = 0;
 	void Update()
 	{
-		if(m_health > 0) 
+		if (Input.GetButton ("Fire1") ) 
 		{
-			if (Input.GetButton ("Fire1")) {
-				lasers [0].Fire ();
-			
-			}
-			
-			
-			if (Input.GetButtonDown ("Fire2")) {
-				// Fire Missile
-			
-				bool b = missiles [nextmissile].Fire (myRadar.GetTarget ());
-				if (b)
-					nextmissile = nextmissile ^ 1;
-				//Debug.Log(nextmissile);
-			}
-		} 
-		else 
+			lasers[0].Fire ();
+
+		}
+
+
+		if (Input.GetButtonDown ("Fire2") ) 
 		{
-			if(m_ship != null)
-				m_ship.enabled = false;
+			// Fire Missile
+
+			bool b = missiles[nextmissile].Fire(myRadar.GetTarget());
+			if(b)
+				nextmissile = nextmissile^1;
+			//Debug.Log(nextmissile);
 		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-		if (m_health > 0) 
-		{
-			float fVertical = Input.GetAxis ("Vertical");
-			float fHorizontal = Input.GetAxis ("Horizontal");
+        float fVertical = Input.GetAxis("Vertical");
+        float fHorizontal = Input.GetAxis("Horizontal");
 
-			//Vector3 move = new Vector3(0.0f,0.0f, fVertical);
+        //Vector3 move = new Vector3(0.0f,0.0f, fVertical);
 
-			m_Transform.Rotate (0f, fHorizontal, 0f);
-			m_rigidbody.velocity = m_Transform.forward * Speed * fVertical;
+		m_Transform.Rotate(0f,fHorizontal,0f);
+		m_rigidbody.velocity = m_Transform.forward *Speed *fVertical;
 
 
 
-			if (fVertical >= 0f)
-				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, fHorizontal * -Tilt);
+			if(fVertical >= 0f)
+				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,fHorizontal * -Tilt);
 			else
-				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, -fHorizontal * -Tilt);
-		}
-		else 
-		{
-			m_rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-		}
+				playerModel.transform.localRotation = Quaternion.Euler(0f,0f,-fHorizontal * -Tilt);
+	   		      
 	}
 
 	public void Reset()
@@ -104,7 +91,6 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 		m_health = MaxHealth;
 		m_Transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 		m_Transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
-		m_ship.enabled = true;
 	}
 	
 	void OnTriggerEnter(Collider other)

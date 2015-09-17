@@ -56,7 +56,8 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		{
 			//Event_Manager.TriggerEvent("EnemyDestroyed");
 			Event_System.EnemyDestroyed(this.gameObject);
-			Instantiate(m_Death, m_rigidbody.position, m_rigidbody.rotation);
+			Object explosion = Instantiate(m_Death, m_rigidbody.position, m_rigidbody.rotation);
+			Destroy(explosion, 3.0f);
 			Destroy (gameObject);
 		}
 		//Checks if the Player is infront of the enemy and if they're in a sutible range to attack

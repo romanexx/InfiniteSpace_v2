@@ -11,6 +11,7 @@ public class Player_HUD : MonoBehaviour
 	public UnityEngine.UI.Slider m_HealthBar;
 	public Text m_Score;
 	public Text m_Respawn;
+	public Text m_Restart;
 	public Text m_Help;
 	public RectTransform m_Lives;
 
@@ -27,6 +28,7 @@ public class Player_HUD : MonoBehaviour
 		m_Lives.sizeDelta = new Vector2 (m_Lives.sizeDelta.x * m_Game.M_Lives, m_Lives.sizeDelta.y);
 		m_ImgWidth = m_Lives.sizeDelta.x / (float)m_Game.M_Lives;
 
+		m_Restart.enabled = false;
 		m_Help.enabled = false; 
 	}
 	
@@ -45,10 +47,14 @@ public class Player_HUD : MonoBehaviour
 			}
 			else if(m_Game.M_Lives <= 0)
 			{
-				m_Respawn.text = "  Game Over";
+				m_Respawn.text = "Game Over";
+				m_Restart.enabled = true;
 			}
 			else
+			{
 				m_Respawn.text = "";
+				m_Restart.enabled = false; 
+			}
 		}
 	}
 

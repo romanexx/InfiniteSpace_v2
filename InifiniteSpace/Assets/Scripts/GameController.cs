@@ -43,6 +43,9 @@ public class GameController : MonoBehaviour
 			Application.LoadLevel("MainMenu");
 		}
 
+		if(m_Lives <= 0 && Input.GetKeyUp (KeyCode.Return))
+			Restart();
+
 		if(m_Player.M_health <= 0) 
 		{
 			m_Timer -= Time.deltaTime;
@@ -53,6 +56,18 @@ public class GameController : MonoBehaviour
 				m_Timer = m_Respawn;
 			}
 		}
+	}
+
+	void Restart()
+	{
+		m_Lives = 3;
+		for (int i = 0; i < m_Spawners.Length; ++i) 
+		{
+			m_Spawners[i].Reset();
+		}
+		m_Player.Reset();
+		m_Timer = m_Respawn;
+		m_Score = 0;
 	}
 
 	//Message Shit

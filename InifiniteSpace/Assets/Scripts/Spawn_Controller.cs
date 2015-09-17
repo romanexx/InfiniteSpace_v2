@@ -35,4 +35,10 @@ public class Spawn_Controller : MonoBehaviour
 	{
 		Instantiate (object_type, m_rigidbody.position, m_rigidbody.rotation);
 	}
+
+	public void Reset()
+	{
+		currentCount = 0;
+		nextSpawn = 0.0f;
+	}
 }

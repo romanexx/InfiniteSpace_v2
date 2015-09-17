@@ -8,16 +8,15 @@ public class GameController : MonoBehaviour
 
 	int m_Score = 0;
 	int m_Lives = 3;
-	float m_RespawnTime = 3.0f;
-	float m_timer = 0.0f;
-
-	bool GameOver = false;
+	public float m_Respawn = 3.0f;
+	float m_Timer; 
 
 	// Use this for initialization
 	void Start () 
 	{
 		m_Player = FindObjectOfType<SpaceShip_Controller>();
 		m_Spawners = FindObjectsOfType<Spawn_Controller>();
+		m_Timer = m_Respawn;
 	}
 	
 	// Update is called once per frame
@@ -35,15 +34,14 @@ public class GameController : MonoBehaviour
 			Application.LoadLevel("MainMenu");
 		}
 
-		if (m_Player.M_health <= 0) 
+		if(m_Player.M_health <= 0) 
 		{
-			m_timer += Time.deltaTime;
-			if(m_timer >= m_RespawnTime)
+			m_Timer -= Time.deltaTime;
+			if(m_Timer < 0.0f)
 			{
 				m_Player.Reset();
 				m_Lives -= 1;
-				if(m_Lives <= 0)
-					GameOver = true;
+				m_Timer = m_Respawn;
 			}
 		}
 	}
@@ -67,13 +65,19 @@ public class GameController : MonoBehaviour
 		m_Score += 10;
 	}
 
-
+	//Getters and Setters for importiant variables.
 	public int M_Score {
 		get {
 			return m_Score;
 		}
 		set {
 			m_Score = value;
+		}
+	}
+
+	public int M_Lives {
+		get {
+			return m_Lives;
 		}
 	}
 }

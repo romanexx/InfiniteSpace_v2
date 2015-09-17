@@ -120,7 +120,7 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 
 		if (other.tag == "BaseProjectile") 
 		{
-			TakeDamage(other.GetComponent<Projectile>().Damage);
+			TakeDamage(other.GetComponent<_BaseProjectile>().Damage);
 		}
 
 		if(other.tag == "BaseEnemy")

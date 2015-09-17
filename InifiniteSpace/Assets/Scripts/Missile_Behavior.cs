@@ -19,7 +19,7 @@ public class Missile_Behavior : MonoBehaviour {
 	ParticleSystem exhaust;
 
 
-	public AudioClip ExplosisionClip;
+	public AudioSource MissileShot;
 	public GameObject explosionPrefab;
 
 
@@ -33,6 +33,7 @@ public class Missile_Behavior : MonoBehaviour {
 			{
 				m_RigidBody.isKinematic = false;
 				m_Transform.parent = null;
+				MissileShot.Play();
 				Destroy (gameObject, maxLifetime);
 				exhaust.Play();
 			}
@@ -60,7 +61,7 @@ public class Missile_Behavior : MonoBehaviour {
 		m_RigidBody.isKinematic = true;
 		m_Transform = GetComponent<Transform>();
 		exhaust = GetComponentInChildren<ParticleSystem>();
-
+		MissileShot = GetComponent<AudioSource>();
 
 
 //		ParticleSystem[] temp = GetComponentsInChildren<ParticleSystem>();
@@ -105,7 +106,6 @@ public class Missile_Behavior : MonoBehaviour {
 			d.TakeDamage(Damage);
 
 			Destroy(gameObject);
-			//explosion.Play();
 
 			//cleans up the explosion
 			GameObject t = Instantiate(explosionPrefab,m_Transform.position, m_Transform.rotation) as GameObject;

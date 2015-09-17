@@ -17,6 +17,9 @@ public class Missile_Behavior : MonoBehaviour {
 	Rigidbody m_RigidBody;
 	Transform m_Transform;
 	ParticleSystem exhaust;
+
+
+	public AudioClip ExplosisionClip;
 	public GameObject explosionPrefab;
 
 
@@ -57,6 +60,8 @@ public class Missile_Behavior : MonoBehaviour {
 		m_RigidBody.isKinematic = true;
 		m_Transform = GetComponent<Transform>();
 		exhaust = GetComponentInChildren<ParticleSystem>();
+
+
 
 //		ParticleSystem[] temp = GetComponentsInChildren<ParticleSystem>();
 //		Debug.Log (temp.Length);

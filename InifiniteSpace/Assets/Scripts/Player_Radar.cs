@@ -100,11 +100,11 @@ public class Player_Radar : _BaseRadar {
 
 			SetTarget(Targets[TargetIndex]);
 
-			if(GetTarget())
-			{
-				Debug.DrawRay(myTransform.position, GetTarget().transform.position, Color.green);
-				
-			}
+//			if(GetTarget())
+//			{
+//				Debug.DrawRay(myTransform.position, GetTarget().transform.position, Color.green);
+//
+//			}
 		}
 	}
 

@@ -9,7 +9,7 @@ public class Player_HUD : MonoBehaviour
 
 	//Health Bar information
 	public UnityEngine.UI.Slider m_HealthBar;
-	public GameObject m_Target;
+
 	public Text m_Score;
 
 	// Use this for initialization
@@ -28,19 +28,7 @@ public class Player_HUD : MonoBehaviour
 			m_HealthBar.value = m_HealthBar.maxValue * healthRat;
 			m_Score.text = m_Game.M_Score.ToString();
 
-			if(m_Player.m_Target != null)
-			{
-				m_Target.transform.position = m_Player.m_Target.transform.position;
-				m_Target.transform.Translate(0.0f, 15.0f, 0.0f);
-				Vector3 toCanvas = gameObject.transform.position - m_Player.m_Target.transform.position;
-				m_Target.transform.rotation = Quaternion.Euler(toCanvas);
-			}
-			else
-			{
-				m_Target.transform.position = m_Player.transform.position;
-				m_Target.transform.Translate(0.0f, 0.0f, -50.0f);
-				m_Target.transform.rotation = m_Player.transform.rotation;
-			}
+
 		}
 	}
 }

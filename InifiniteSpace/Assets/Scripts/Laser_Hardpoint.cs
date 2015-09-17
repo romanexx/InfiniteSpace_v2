@@ -16,7 +16,7 @@ public class Laser_Hardpoint : _BaseHardPoint {
 	{
 		myController = FindObjectOfType<SpaceShip_Controller>();
 		MyTransform = GetComponent<Transform>();
-		ProjectilePrefab = myController.getLaserPrefab();
+		//ProjectilePrefab = myController.getLaserPrefab();
 	}
 	
 	// Update is called once per frame

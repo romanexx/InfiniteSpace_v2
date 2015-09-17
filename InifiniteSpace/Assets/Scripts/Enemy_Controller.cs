@@ -114,7 +114,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	{
 		if (other.tag == "BaseProjectile") 
 		{
-			 TakeDamage(other.GetComponent<Projectile>().Damage);
+			 TakeDamage(other.GetComponent<_BaseProjectile>().Damage);
 		}
 
 	}

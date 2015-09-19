@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,8 +10,11 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		m_heatlh -=dam;
 	}
 
+	void ControlOverride(bool val)
+	{
 
-
+	}
+	/****************************************************************/
 	Rigidbody m_rigidbody;
 	Transform m_transform;
 
@@ -60,17 +63,19 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 			Destroy(death, 1.0f);
 			Destroy (gameObject);
 		}
-		//Checks if the Player is infront of the enemy and if they're in a sutible range to attack
-		var m_HitInfo = new RaycastHit();
-		if (Physics.Raycast (m_transform.position, m_transform.forward, out m_HitInfo, m_fireRange) == true) 
-		{
-			if(m_HitInfo.collider.tag == "Player")
-			{
-				for(int i = 0; i < m_lasers.Length; ++i)
-					m_lasers[i].Fire();
-				//Debug.Log("Enemy Firing");
-			}
 
+		if (myRadar.GetTarget()) 
+		{
+			//Checks if the Player is infront of the enemy and if they're in a sutible range to attack
+			var m_HitInfo = new RaycastHit ();
+			if (Physics.Raycast (m_transform.position, m_transform.forward, out m_HitInfo, m_fireRange) == true) {
+				if (m_HitInfo.collider.tag == "Player") {
+					for (int i = 0; i < m_lasers.Length; ++i)
+						m_lasers [i].Fire ();
+			
+				}
+			
+			}
 		}
 	}
 

@@ -43,7 +43,7 @@ public class Enemy_Radar : _BaseRadar {
 		{
 			myController.TargetAcquired(false);
 			SetTarget(null);
-			Debug.Log(gameObject.name + " Lost the target");
+			//Debug.Log(gameObject.name + " Lost the target");
 		}
 	}
 }

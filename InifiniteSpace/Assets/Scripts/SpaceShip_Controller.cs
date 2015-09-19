@@ -2,13 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
+public class SpaceShip_Controller : MonoBehaviour, IDamageable<int>, IControllable {
 
 	//interface methods
 	public void TakeDamage(int dam)
 	{
 		m_health -= dam;
 	}
+
+	//for out of bounds;
+
+	bool inControl = true;
+	public void ControlOverride(bool val)
+	{
+		inControl = val;
+	}
+	/***********************************/
+
 
 
 	public int MaxHealth;
@@ -90,20 +100,39 @@ public class SpaceShip_Controller : MonoBehaviour, IDamageable<int> {
 
 			//Vector3 move = new Vector3(0.0f,0.0f, fVertical);
 
-			m_Transform.Rotate (0f, fHorizontal, 0f);
-			m_rigidbody.velocity = m_Transform.forward * Speed * fVertical;
-
-
-
-			if (fVertical >= 0f)
-				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, fHorizontal * -Tilt);
+			if (inControl) 
+			{
+				m_Transform.Rotate (0f, fHorizontal, 0f);
+				m_rigidbody.velocity = m_Transform.forward * Speed * fVertical;
+				
+				
+				
+				if (fVertical >= 0f)
+					playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, fHorizontal * -Tilt);
+				else
+					playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, -fHorizontal * -Tilt);
+			}
 			else
-				playerModel.transform.localRotation = Quaternion.Euler (0f, 0f, -fHorizontal * -Tilt);
+				OutOfBoundsCorrector();
 		} 
 		else 
 		{
 			m_rigidbody.velocity = new Vector3 (0.0f, 0.0f, 0.0f);
 		}	      
+	}
+
+	void OutOfBoundsCorrector()
+	{
+
+		m_Transform.rotation = Quaternion.Slerp(m_Transform.rotation, Quaternion.LookRotation(Vector3.zero- m_Transform.position),0.5f* Time.deltaTime);
+		m_rigidbody.velocity = m_Transform.forward * Speed;
+
+	}
+
+	void OnGUI()
+	{
+		if(!inControl)
+		GUI.Box(new Rect(Screen.width*0.5f-100, Screen.height*0.5f, 200, 25), "OUT OF BOUNDS");
 	}
 
 	public void Reset()

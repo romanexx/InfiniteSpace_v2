@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc1176e276106d4c845e96de1814232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 137042, guid: 2e6b800563d5509438e4450824330978, type: 2}
   fireRate: .400000006
 --- !u!124 &12459144
 Behaviour:
@@ -374,7 +374,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ProjectilePrefab
+      value: 
+      objectReference: {fileID: 137042, guid: 2e6b800563d5509438e4450824330978, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125490}

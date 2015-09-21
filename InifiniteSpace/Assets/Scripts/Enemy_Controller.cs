@@ -128,4 +128,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	{
 		m_BaseBehavior = b;
 	}
+
+
+
 }

@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 	Player_HUD m_HUD;
 	Spawn_Controller[] m_Spawners;
 	ScoreTable m_HighScores;
+	ValueHolder m_Values = null;
 
 	int m_Score = 0;
 	int m_Lives = 3;
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
 	float m_Timer;
 
 	bool m_bHighScore = false;
+	bool m_bHSUpdated = false;
 
 	// Use this for initialization
 	void Start () 
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
 		m_Player = FindObjectOfType<SpaceShip_Controller>();
 		m_HUD = FindObjectOfType<Player_HUD>();
 		m_Spawners = FindObjectsOfType<Spawn_Controller>();
+		m_Values = FindObjectOfType<ValueHolder> ();
 
 		m_HighScores = new ScoreTable();
 		m_HighScores.LoadScores ();
@@ -54,7 +57,14 @@ public class GameController : MonoBehaviour
 		} 
 		else 
 		{
-			m_bHighScore = m_HighScores.CheckScore(m_Score);
+			if(m_HighScores.CheckScore(m_Score) && m_bHSUpdated == false)
+			{
+				if(m_Values != null)
+					m_HighScores.NewScore(m_Values.M_Username, m_Score);
+				M_HighScores.WriteScores();
+				m_bHighScore = true;
+				m_bHSUpdated = true;
+			}
 
 			if(Input.GetKeyUp (KeyCode.Return))
 				Restart();
@@ -78,6 +88,8 @@ public class GameController : MonoBehaviour
 		m_Player.Reset();
 		m_Timer = m_Respawn;
 		m_Score = 0;
+		m_bHighScore = false;
+		m_bHSUpdated = false;
 	}
 
 	//Message Shit
@@ -124,6 +136,12 @@ public class GameController : MonoBehaviour
 	public bool M_bHighScore {
 		get {
 			return m_bHighScore;
+		}
+	}
+
+	public ScoreTable M_HighScores {
+		get {
+			return m_HighScores;
 		}
 	}
 }

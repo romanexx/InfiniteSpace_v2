@@ -81,7 +81,7 @@ public class ScoreTable
 	}
 
 	//Adds the new score to the list.
-	public void NewScore(string name, int score)
+	public int NewScore(string name, int score)
 	{
 		HighScore nHS = new HighScore();
 		nHS.s_Player = name;
@@ -94,12 +94,12 @@ public class ScoreTable
 				if(nHS.s_Score > m_TopTen[i].s_Score)
 				{
 					m_TopTen.Insert(i, nHS);
-					break;
+					return i+1;
 				}
-				else if( i+1 == m_TopTen.Count)
+				else if( i+1 >= m_TopTen.Count)
 				{
 					m_TopTen.Add(nHS);
-					break;
+					return i+1;
 				}
 			}
 		}
@@ -110,11 +110,13 @@ public class ScoreTable
 				if(nHS.s_Score > m_TopTen[i].s_Score)
 				{
 					m_TopTen.Insert(i, nHS);
-					break;
+					m_TopTen.Remove(m_TopTen[m_TopTen.Count-1]);
+					return i+1;
 				}
 			}
-			m_TopTen.Remove(m_TopTen[m_TopTen.Count-1]);
 		}
+
+		return -1;
 	}
 
 

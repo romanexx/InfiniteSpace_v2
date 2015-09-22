@@ -8,16 +8,23 @@ public class MainMenuContorller : MonoBehaviour
 
 	public Text m_Credits; 
 	float m_CreYPos = 0.0f; //Default Position for the credits.
+	public InputField m_IF;
+	public Text Warning;
+	public ValueHolder m_Values;
+
 
 	void Start()
 	{
 		m_Credits.enabled = false;
 		m_CreYPos = m_Credits.rectTransform.position.y;
 		m_Buttons = FindObjectsOfType<Button>();
+		Warning.enabled = false;
 	}
 
 	void Update()
 	{
+		m_Values.M_Username = m_IF.text;
+
 		if ((m_Credits.rectTransform.position.y > 100.0f || Input.GetKey(KeyCode.Return) || Input.GetKey("escape")) && m_Credits.enabled == true) 
 		{
 			m_Credits.enabled = false; 
@@ -39,7 +46,15 @@ public class MainMenuContorller : MonoBehaviour
 
 	public void StartButton()
 	{
-		Application.LoadLevel ("Level_1");
+		if (m_IF.text != "") 
+		{
+			DontDestroyOnLoad (m_Values);
+			Application.LoadLevel ("Level_1");
+		} 
+		else 
+		{
+			Warning.enabled = true;
+		}
 	}
 
 	public void Credits()

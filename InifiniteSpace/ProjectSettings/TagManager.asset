@@ -10,6 +10,7 @@ TagManager:
   - Radar
   - Missile
   - HealthBar
+  - WayPoint
   layers:
   - Default
   - TransparentFX

@@ -59,6 +59,9 @@ public class Spawn_Controller : MonoBehaviour
 			nextSpawn = Time.time + spawn_rate;
 			GameObject g = Instantiate (object_type, m_Transform.position, m_Transform.rotation) as GameObject;
 			my_Ships.Add(g);
+
+			Transform NextWaypoint = WayPoint_Manager.GetNextWaypoint(0);
+			g.GetComponent<Enemy_Controller>().SetNextWaypoint(NextWaypoint);
 		}
 	}
 	

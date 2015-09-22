@@ -14,6 +14,19 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 	{
 
 	}
+
+
+	Transform MyWaypoint = null;
+	public void SetNextWaypoint(Transform val)
+	{
+		MyWaypoint = val;
+	}
+	void FlyToWaypoint()
+	{
+		m_transform.rotation = Quaternion.Slerp(m_transform.rotation, Quaternion.LookRotation(MyWaypoint.position- m_transform.position),m_turnRate* Time.deltaTime);
+		m_rigidbody.velocity = m_transform.forward * m_CurrSpeed;
+	}
+
 	/****************************************************************/
 	Rigidbody m_rigidbody;
 	Transform m_transform;
@@ -110,8 +123,13 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		else 
 		{
 			//If there is no target it does a base patrol;
-			m_transform.Rotate (0f, m_turnRate, 0f);
-			m_rigidbody.velocity = m_transform.forward * m_CurrSpeed;
+			if(MyWaypoint == null)
+			{
+				m_transform.Rotate (0f, m_turnRate, 0f);
+				m_rigidbody.velocity = m_transform.forward * m_CurrSpeed;
+			}
+			else
+				FlyToWaypoint();
 		}
 	}
 	

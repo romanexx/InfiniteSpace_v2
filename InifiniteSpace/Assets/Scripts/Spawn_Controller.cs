@@ -41,13 +41,18 @@ public class Spawn_Controller : MonoBehaviour
 
 
 
-
+	WayPoint_Manager myWaypointManager;
 
 	// Use this for initialization
 	void Start () 
 	{
 		m_Transform = GetComponent<Transform>();
 		my_Ships = new List<GameObject>();
+		myWaypointManager = FindObjectOfType<WayPoint_Manager>();
+		if(!myWaypointManager)
+		{
+			Debug.LogError("You need to have a waypoint manager object in the scene");
+		}
 	}
 	
 	// Update is called once per frame
@@ -60,7 +65,7 @@ public class Spawn_Controller : MonoBehaviour
 			GameObject g = Instantiate (object_type, m_Transform.position, m_Transform.rotation) as GameObject;
 			my_Ships.Add(g);
 
-			Transform NextWaypoint = WayPoint_Manager.GetNextWaypoint(0);
+			Transform NextWaypoint = myWaypointManager.GetNextWaypoint(0);
 			g.GetComponent<Enemy_Controller>().SetNextWaypoint(NextWaypoint);
 		}
 	}

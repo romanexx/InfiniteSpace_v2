@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HighScores>
+  <highscore player="RomanExx" score="250" />
   <highscore player="Ass" score="230" />
+  <highscore player="RomanExx" score="170" />
   <highscore player="Skips" score="130" />
   <highscore player="RomanExx" score="125" />
   <highscore player="Venom" score="120" />
@@ -8,6 +10,4 @@
   <highscore player="Solid" score="90" />
   <highscore player="Liquid" score="90" />
   <highscore player="Solidus" score="80" />
-  <highscore player="Naked" score="60" />
-  <highscore player="Bill" score="50" />
 </HighScores>

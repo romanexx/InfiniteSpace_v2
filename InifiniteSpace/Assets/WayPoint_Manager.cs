@@ -4,13 +4,16 @@ using System.Collections;
 
 public class WayPoint_Manager : MonoBehaviour {
 
-	public static GameObject[] WayPoints;
+	public GameObject[] WayPoints;
 
 	// Use this for initialization
-	void Awake () 
+	void Start () 
 	{
 		if(WayPoints == null)
 			WayPoints =  GameObject.FindGameObjectsWithTag("WayPoint");
+
+		if(WayPoints == null)
+			Debug.LogError("There are no waypoints in the scene");
 	}
 
 
@@ -23,7 +26,7 @@ public class WayPoint_Manager : MonoBehaviour {
 	}
 
 
-	public static Transform GetNextWaypoint(int index)
+	public Transform GetNextWaypoint(int index)
 	{
 		int newIndex = Random.Range(0,WayPoints.Length);
 		//Debug.Log("Next WAYPOINT IS" + newIndex);

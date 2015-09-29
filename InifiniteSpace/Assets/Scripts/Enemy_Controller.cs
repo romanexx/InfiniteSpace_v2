@@ -15,7 +15,7 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 
 	}
 
-
+	public WayPoint_Manager myWaypointManager;
 	Transform MyWaypoint = null;
 	public void SetNextWaypoint(Transform val)
 	{
@@ -64,6 +64,12 @@ public class Enemy_Controller : MonoBehaviour, IDamageable<int>
 		m_lasers = GetComponentsInChildren<Laser_Hardpoint>();
 		myRadar = GetComponentInChildren<Enemy_Radar>();
 		m_CurrSpeed = m_MaxSpeed;
+
+		myWaypointManager = FindObjectOfType<WayPoint_Manager>();
+		if(!myWaypointManager)
+		{
+			Debug.LogError("You need to have a waypoint manager object in the scene");
+		}
 	}
 
 	void Update()

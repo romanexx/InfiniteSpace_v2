@@ -6,6 +6,7 @@ public class MainMenuContorller : MonoBehaviour
 {
 	Button[] m_Buttons; 
 
+	public Text m_Title;
 	public Text m_Credits; 
 	float m_CreYPos = 0.0f; //Default Position for the credits.
 	public InputField m_IF;
@@ -15,6 +16,7 @@ public class MainMenuContorller : MonoBehaviour
 
 	void Start()
 	{
+		m_Title.enabled = true;
 		m_Credits.enabled = false;
 		m_CreYPos = m_Credits.rectTransform.position.y;
 		m_Buttons = FindObjectsOfType<Button>();
@@ -33,6 +35,8 @@ public class MainMenuContorller : MonoBehaviour
 			{
 				m_Buttons[i].gameObject.SetActive(true);
 			}
+			m_IF.gameObject.SetActive(true);
+			m_Title.enabled = true;
 		}
 	}
 
@@ -64,6 +68,8 @@ public class MainMenuContorller : MonoBehaviour
 		{
 			m_Buttons[i].gameObject.SetActive(false);
 		}
+		m_IF.gameObject.SetActive(false);
+		m_Title.enabled = false;
 	}
 
 	public void ExitButton()

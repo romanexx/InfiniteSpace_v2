@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e0f2ad643578f40bb18ee6a1535d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Title: {fileID: 376706034}
   m_Credits: {fileID: 818768939}
   m_IF: {fileID: 1665093756}
   Warning: {fileID: 1459146117}
